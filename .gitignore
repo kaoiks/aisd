@@ -1,1 +1,5 @@
+# Pomija cache Pythona
 __pycache__
+
+# Pomija pliki z danymi wejściowymi
+*.in
