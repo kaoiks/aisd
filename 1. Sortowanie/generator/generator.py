@@ -3,6 +3,8 @@
 # algorytmów sortujących
 #
 
+from rand import random_generator
+
 def main():
     size = get_size()
     generator = get_generator_func()
@@ -29,7 +31,7 @@ def get_size():
 def get_generator_func():
     # Obsługiwane generatory ciągu
     legal_types = {
-        '~': ('Losowy', no_generator),
+        '~': ('Losowy', random_generator),
         '-': ('Stały', no_generator),
         '/': ('Rosnący', no_generator),
         '\\': ('Malejący', no_generator),
