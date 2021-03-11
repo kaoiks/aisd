@@ -3,7 +3,7 @@
 # algorytmów sortujących
 #
 
-from rand import random_generator
+from generators.rand import random_generator
 
 def main():
     size = get_size()
