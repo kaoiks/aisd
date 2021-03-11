@@ -3,11 +3,13 @@ import sys
 from check import check_sort
 
 from heapsort import heapsort
+from mergesort import mergesort
 
 # Zwraca obsługiwane funkcje sortujące
 def get_supported_functions():
     return {
-        'heap': ('Heapsort', heapsort)
+        'heap': ('Heapsort', heapsort),
+        'merge': ('Mergesort', mergesort)
     }
 
 def main():
