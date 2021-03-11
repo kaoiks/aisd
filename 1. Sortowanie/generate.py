@@ -4,6 +4,7 @@
 #
 
 from generators.rand import random_generator
+from generators.const import const_generator
 from generators.asc import asc_generator
 from generators.desc import desc_generator
 
@@ -34,7 +35,7 @@ def get_generator_func():
     # Obsługiwane generatory ciągu
     legal_types = {
         '~': ('Losowy', random_generator),
-        '-': ('Stały', no_generator),
+        '-': ('Stały', const_generator),
         '/': ('Rosnący', asc_generator),
         '\\': ('Malejący', desc_generator),
         'A': ('A-kształtny', no_generator),
