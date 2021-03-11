@@ -13,7 +13,6 @@ def asc_generator(file, count):
     end = randint(max_v / 2, max_v)
     step = (end - start) / (count - 1)
 
-    file.write(str(count))
     for i in range(count):
         num = int(start + i * step)
         file.write('\n' + str(num))

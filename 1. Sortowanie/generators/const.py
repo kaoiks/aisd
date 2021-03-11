@@ -11,6 +11,5 @@ def const_generator(file, count):
 
     val = randint(min_v, max_v)
 
-    file.write(str(count))
     for _i in range(count):
         file.write('\n' + str(val))
