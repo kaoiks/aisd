@@ -7,12 +7,15 @@ from generators.rand import random_generator
 from generators.const import const_generator
 from generators.asc import asc_generator
 from generators.desc import desc_generator
+from generators.a_shape import ashape_generator
+from generators.v_shape import vshape_generator
 
 def main():
     size = get_size()
     generator = get_generator_func()
     output_file = get_file()
 
+    output_file.write(str(size))
     generator(output_file, size)
     output_file.close()
 
@@ -38,8 +41,8 @@ def get_generator_func():
         '-': ('Stały', const_generator),
         '/': ('Rosnący', asc_generator),
         '\\': ('Malejący', desc_generator),
-        'A': ('A-kształtny', no_generator),
-        'V': ('V-kształtny', no_generator)
+        'A': ('A-kształtny', ashape_generator),
+        'V': ('V-kształtny', vshape_generator)
     }
 
     # Pyta użytkownika o wybór tak długo, aż dostanie prawidłowy wybór
