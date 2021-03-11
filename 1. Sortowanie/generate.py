@@ -49,7 +49,7 @@ def get_generator_func():
     choice = ''
     while True:
         print('Wybierz rodzaj zestawu danych [', ' '.join(legal_types.keys()), ']: (? to pomoc) ', end='', sep='')
-        choice = input().strip()
+        choice = input().strip().upper()
         if choice in legal_types:
             break
 
