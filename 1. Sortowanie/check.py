@@ -13,9 +13,9 @@ def check_sort(arr):
             is_asc = False
     
     if is_asc and is_desc:
-        return (True, "Posortowany - ciąg stały")
+        return (True, "Ciąg posortowany - stały")
     if is_asc:
-        return (True, "Posortowany - ciąg rosnący")
+        return (True, "Ciąg posortowany - niemalejąco")
     if is_desc:
-        return (True, "Posortowany - ciąg malejący")
-    return (False, "Nieposortowany")
+        return (True, "Ciąg posortowany - nierosnąco")
+    return (False, "Ciąg nie jest posortowany")
