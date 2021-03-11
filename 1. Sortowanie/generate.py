@@ -60,8 +60,11 @@ def get_generator_func():
 def get_file():
     while True:
         try:
-            print('Podaj nazwę pliku wyjściowego: ', end='')
+            print('Podaj nazwę pliku wyjściowego (rozszerzenie: .in): ', end='')
             filename = input()
+
+            if not filename.endswith('.in'):
+                filename += '.in'
             f = open(filename, 'w')
             break
         except IOError:
