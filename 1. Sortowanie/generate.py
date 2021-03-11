@@ -4,6 +4,7 @@
 #
 
 from generators.rand import random_generator
+from generators.asc import asc_generator
 
 def main():
     size = get_size()
@@ -33,7 +34,7 @@ def get_generator_func():
     legal_types = {
         '~': ('Losowy', random_generator),
         '-': ('Stały', no_generator),
-        '/': ('Rosnący', no_generator),
+        '/': ('Rosnący', asc_generator),
         '\\': ('Malejący', no_generator),
         'A': ('A-kształtny', no_generator),
         'V': ('V-kształtny', no_generator)
