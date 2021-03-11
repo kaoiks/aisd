@@ -2,8 +2,8 @@ import timeit
 import sys
 from check import check_sort
 
-from heapsort import heapsort
-from mergesort import mergesort
+from algos.heapsort import heapsort
+from algos.mergesort import mergesort
 
 # Zwraca obsługiwane funkcje sortujące
 def get_supported_functions():
