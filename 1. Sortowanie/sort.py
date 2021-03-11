@@ -60,7 +60,7 @@ def print_usage():
     supported_func = get_supported_functions()
 
     print('\nSposób wywołania:')
-    print('    main.py (algorytm)')
+    print('    sort.py (algorytm)')
     print('\nObsługiwane algorytmy:')
     for a in supported_func:
         print('    [', a, ']: ', supported_func[a][0], sep='')
