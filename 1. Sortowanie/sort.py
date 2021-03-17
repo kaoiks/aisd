@@ -19,12 +19,9 @@ def get_supported_functions():
 def main():
     params = parse_command_line(sys.argv[1:])
     sort_func = get_sort_func(params)
+    outfile = get_output(params)
 
-    a = []
-    n = int(input())
-
-    for _i in range(n):
-        a.append(int(input()))
+    a = read_input(params)
 
     time_sum = 0
     repetitions = params['repetitions']
@@ -34,7 +31,12 @@ def main():
         print('Przebieg ', i+1, ':', sep='')
         time_sum += sort(in_arr, sort_func)
 
-    print('Średni czas pojedynczego sortowania:', time_sum/repetitions, 'ms')
+    avg = int(10 * time_sum / repetitions) / 10
+    print('Średni czas pojedynczego sortowania:', avg, 'ms')
+
+    if outfile != None:
+        outfile.write(params['algo'] + ', ' + str(avg) + '\n')
+        outfile.close()
 
 def copy_array(a):
     return [e for e in a]
@@ -79,16 +81,53 @@ def get_sort_func(params):
     exit(0)
 
 
+# Zwraca uchwyt do pliku wyjściowego
+def get_output(params):
+    if params['outfile'] == None:
+        return None
+
+    try:
+        file = open(params['outfile'], 'a')
+        return file
+    except IOError:
+        print('Nie udało się otworzyć pliku wyjściowego.')
+        exit(0)
+
+
+# Odczytuje dane do posortowania
+def read_input(params):
+    read_fun = input
+    if params['infile'] != None:
+        try:
+            file = open(params['infile'], 'r')
+            read_fun = file.readline
+        except IOError:
+            print('Nie udało się odczytać pliku', params['infile'])
+            return []
+
+    a = []
+    n = int(read_fun())
+
+    for _i in range(n):
+        a.append(int(read_fun()))
+
+    if params['infile'] != None:
+        file.close()
+
+    return a
+
 # Przetwarza argumenty wiersza polecenia
 def parse_command_line(commands):
     positional_args = ['algo']
     prefix_args = {
-        '-p': 'repetitions',
-        '-o': 'outfile'
+        '-i': 'infile',
+        '-o': 'outfile',
+        '-p': 'repetitions'
     }
 
     result = {
         'algo': None,
+        'infile': None,
         'outfile': None,
         'repetitions': '1'
     }
@@ -128,10 +167,12 @@ def print_usage():
     supported_func = get_supported_functions()
 
     print('\nSposób wywołania:')
-    print('    sort.py [-p przebiegów] (algorytm)')
+    print('    sort.py [-i plik_wejściowy] [-o plik_wyjściowy] [-p przebiegów] (algorytm)')
     print('\nObsługiwane algorytmy:')
     for a in supported_func:
         print('    [', a, ']: ', supported_func[a][0], sep='')
-    print('\nDomyślnie program wykonuje tylko jeden przebieg, a wyniki trafiają tylko do konsoli')
+    print('\nDomyślnie program wykonuje tylko jeden przebieg, a wyniki trafiają tylko na standardowe wyjście.')
+    print('Możliwe jest wybranie pliku wyjściowego, do którego dane będą zapisywane w formacie CSV.')
+    print('Zamiast odczytywania ze standardowego wejścia, program jest w stanie wczytać dane do sortowania z pliku.')
 
 main()
