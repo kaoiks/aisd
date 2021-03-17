@@ -53,7 +53,7 @@ def execute(command_src, def_params):
     print('Średni czas pojedynczego sortowania:', avg, 'ms')
 
     if outfile != None:
-        outfile.write(params['algo'] + ', ' + str(len(a)) + ', ' + str(avg) + '\n')
+        outfile.write(params['algo'] + ', ' + str(len(a)) + ', ' + str(avg) + ', ' + params['infile'] + '\n')
         outfile.close()
 
 
