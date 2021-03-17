@@ -18,6 +18,24 @@ def get_supported_functions():
 
 def main():
     params = parse_command_line(sys.argv[1:])
+
+    if params['scriptfile'] == None:
+        execute([], params)
+    else:
+        try:
+            f = open(params['scriptfile'], 'r')
+            for line in f:
+                line = line.strip()
+                if line.startswith('#') or line == '':
+                    continue
+                tokens = line.split(' ')
+                execute(tokens, params)
+        except IOError:
+            print('Nie udało sie odczytać skryptu.')
+
+# Wykonuje grupę sortowań
+def execute(command_src, def_params):
+    params = parse_command_line(command_src, def_params)
     sort_func = get_sort_func(params)
     outfile = get_output(params)
 
@@ -26,7 +44,7 @@ def main():
     time_sum = 0
     repetitions = params['repetitions']
     for i in range(repetitions):
-        in_arr = [e for e in a]
+        in_arr = a[:]
 
         print('Przebieg ', i+1, ':', sep='')
         time_sum += sort(in_arr, sort_func)
@@ -115,20 +133,23 @@ def read_input(params):
     return a
 
 # Przetwarza argumenty wiersza polecenia
-def parse_command_line(commands):
+def parse_command_line(commands, result=None):
     positional_args = ['algo']
     prefix_args = {
         '-i': 'infile',
         '-o': 'outfile',
-        '-p': 'repetitions'
+        '-p': 'repetitions',
+        '-s': 'scriptfile'
     }
 
-    result = {
-        'algo': None,
-        'infile': None,
-        'outfile': None,
-        'repetitions': '1'
-    }
+    if result == None:
+        result = {
+            'algo': None,
+            'infile': None,
+            'outfile': None,
+            'repetitions': '1',
+            'scriptfile': None
+        }
 
     i = 0
     pos_arg_num = 0
@@ -152,7 +173,7 @@ def parse_command_line(commands):
             pos_arg_num += 1
         i += 1
 
-    if result['algo'] == None:
+    if result['algo'] == None and result['scriptfile'] == None:
         print_usage()
         exit(0)
 
