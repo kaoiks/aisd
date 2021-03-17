@@ -11,9 +11,17 @@ Do wywołania sortowania służy plik `sort.py`. Jako argument w wierszu polecen
 mu symbol algorytmu, który należy uruchomić. W przypadku kiedy nie przekazano żadnego symbolu lub
 przekazano błędny, program wypisze wszystkie obsługiwane algorytmy.
 
-Dane wejściowe powinny być przekazane za pomocą standardowego wejścia w następujący sposób:
+Dane wejściowe powinny być przekazane za pomocą standardowego wejścia lub pliku w następujący sposób:
   * W pierwszej linii jedna liczba `N`, określająca ilość liczb do posortowania
   * Dalej `N` linii, z których każda zawiera jedną liczbę
+
+Pełna składnia polecenia `sort.py` wygląda następująco:
+```
+sort.py (algorytm) [-i plik_wejściowy] [-o plik_wyjściowy] [-p ilość powtórzeń]
+```
+  * `-i` Określa plik, z którego zostaną odczytane liczby do posortowania. Format określono powyżej. W przypadku kiedy parametr nie wystąpi, dane są odczytywane ze standardowego wejścia.
+  * `-o` Określa plik, do którego będą trafiały informacje o średnich czasach wykonywania się sortowania. Format wyjściowy to CSV. Plik nie będzie nadpisywany, ale nowe dane zostaną zapisane na końcu.
+  * `-p` Określa ilość powtórzeń sortowania dla podanych danych wejściowych. Do pliku zostanie zapisany jedynie średni czas wykonywania.
 
 ## Generowanie ciągów
 Za generowanie ciągów odpowiada plik `generate.py`. Po uruchomieniu zapyta o:
