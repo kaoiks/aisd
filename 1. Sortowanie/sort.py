@@ -35,7 +35,7 @@ def main():
     print('Średni czas pojedynczego sortowania:', avg, 'ms')
 
     if outfile != None:
-        outfile.write(params['algo'] + ', ' + str(avg) + '\n')
+        outfile.write(params['algo'] + ', ' + str(len(a)) + ', ' + str(avg) + '\n')
         outfile.close()
 
 def copy_array(a):
