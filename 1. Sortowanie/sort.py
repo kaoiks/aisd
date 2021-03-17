@@ -17,7 +17,7 @@ def get_supported_functions():
     }
 
 def main():
-    params = parse_command_line()
+    params = parse_command_line(sys.argv[1:])
     sort_func = get_sort_func(params)
 
     a = []
@@ -65,25 +65,6 @@ def invoke_func(f, arg, res):
         res.append(0)
     res[0] = f(arg)
 
-# Przetwarza argumenty wiersza polecenia
-def parse_command_line():
-    result = {
-        'algo': None,
-        'repetitions': 1
-    }
-
-    if len(sys.argv) <= 1:
-        print('Oczekiwano przynajmniej jednego paramteru.')
-        print_usage()
-        exit(0)
-
-    result['algo'] = sys.argv[1]
-
-    if len(sys.argv) >= 3:
-        result['repetitions'] = int(sys.argv[2])
-
-    return result
-
 # Zwraca funkcję sortującą, wybraną przez użytkownika w wierszu polecenia
 def get_sort_func(params):
     supported_func = get_supported_functions()
@@ -97,13 +78,60 @@ def get_sort_func(params):
     print_usage()
     exit(0)
 
+
+# Przetwarza argumenty wiersza polecenia
+def parse_command_line(commands):
+    positional_args = ['algo']
+    prefix_args = {
+        '-p': 'repetitions',
+        '-o': 'outfile'
+    }
+
+    result = {
+        'algo': None,
+        'outfile': None,
+        'repetitions': '1'
+    }
+
+    i = 0
+    pos_arg_num = 0
+    while i < len(commands):
+        if commands[i].startswith('-'):
+            if commands[i] in prefix_args and i < len(commands) - 1:
+                key = prefix_args[commands[i]]
+                result[key] = commands[i+1]
+                i += 1
+            else:
+                print('Nieznany przełącznik:', commands[i])
+                print_usage()
+                exit(0)
+        else:
+            if pos_arg_num >= len(positional_args):
+                print('Nieznany argument pozycyjny:', commands[i])
+                print_usage()
+                exit(0)
+
+            result[positional_args[pos_arg_num]] = commands[i]
+            pos_arg_num += 1
+        i += 1
+
+    if result['algo'] == None:
+        print_usage()
+        exit(0)
+
+    result['repetitions'] = int(result['repetitions'])
+
+    return result
+
+# Wypisuje sposób użycia programu
 def print_usage():
     supported_func = get_supported_functions()
 
     print('\nSposób wywołania:')
-    print('    sort.py (algorytm) [przebiegów = 1]')
+    print('    sort.py [-p przebiegów] (algorytm)')
     print('\nObsługiwane algorytmy:')
     for a in supported_func:
         print('    [', a, ']: ', supported_func[a][0], sep='')
+    print('\nDomyślnie program wykonuje tylko jeden przebieg, a wyniki trafiają tylko do konsoli')
 
 main()
