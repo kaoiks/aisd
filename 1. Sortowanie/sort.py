@@ -186,7 +186,7 @@ def print_usage():
     supported_func = get_supported_functions()
 
     print('\nSposób wywołania:')
-    print('    sort.py [-i plik_wejściowy] [-o plik_wyjściowy] [-p przebiegów] (algorytm)')
+    print('    sort.py [-i plik_wejściowy] [-o plik_wyjściowy] [-p przebiegów] [-s skrypt] (algorytm)')
     print('\nObsługiwane algorytmy:')
     for a in supported_func:
         print('    [', a, ']: ', supported_func[a][0], sep='')
