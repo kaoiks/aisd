@@ -26,7 +26,7 @@ def main():
     time_sum = 0
     repetitions = params['repetitions']
     for i in range(repetitions):
-        in_arr = copy_array(a)
+        in_arr = [e for e in a]
 
         print('Przebieg ', i+1, ':', sep='')
         time_sum += sort(in_arr, sort_func)
@@ -38,8 +38,6 @@ def main():
         outfile.write(params['algo'] + ', ' + str(len(a)) + ', ' + str(avg) + '\n')
         outfile.close()
 
-def copy_array(a):
-    return [e for e in a]
 
 # Wykonuje pojedyncze sortowanie. Zwraca czas, w którym się wykonało
 def sort(a, sort_func):
