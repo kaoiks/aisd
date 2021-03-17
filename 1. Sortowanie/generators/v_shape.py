@@ -2,13 +2,20 @@
 # Generator ciągów liczb o charakterze V-kształtnym
 #
 
-from generators.asc import asc_generator
-from generators.desc import desc_generator
-
+from random import randint
 
 def vshape_generator(file, count):
-    desc_count = int(count / 2)
-    asc_count = count - desc_count
+    min_v = -10e8
+    max_v = 10e8
 
-    desc_generator(file, desc_count)
-    asc_generator(file, asc_count)
+    start = randint(max_v / 2, max_v)
+    tip = randint(min_v, min_v / 2)
+    step = (start - tip) / (count - 1)
+
+    for i in range(0, count, 2):
+        num = int(start - i * step)
+        file.write('\n' + str(num))
+
+    for i in range(count - 1 + (count % 2), 0, -2):
+        num = int(start - i * step)
+        file.write('\n' + str(num))
