@@ -1,5 +1,6 @@
 import timeit
 import sys
+import gc
 from check import check_sort
 
 from algos.heapsort import heapsort
@@ -71,6 +72,7 @@ def sort(a, sort_func):
 
     print('  Trwa sprawdzanie sortowania...')
     print('  Wynik:', check_sort(result[0])[1])
+    gc.collect()
     return time
 
 
