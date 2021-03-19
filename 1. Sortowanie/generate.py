@@ -3,6 +3,8 @@
 # algorytmów sortujących
 #
 
+import sys
+
 from generators.rand import random_generator
 from generators.const import const_generator
 from generators.asc import asc_generator
@@ -11,13 +13,20 @@ from generators.a_shape import ashape_generator
 from generators.v_shape import vshape_generator
 
 def main():
-    size = get_size()
-    generator = get_generator_func()
-    output_file = get_file()
+    repetitions = 1
+    if len(sys.argv) >= 2:
+        repetitions = int(sys.argv[1])
 
-    output_file.write(str(size))
-    generator(output_file, size)
-    output_file.close()
+    for _i in range(repetitions):
+        size = get_size()
+        generator = get_generator_func()
+        output_file = get_file()
+
+        output_file.write(str(size))
+        generator(output_file, size)
+        output_file.close()
+    
+    print("Wygenerowano", repetitions, "zestawów danych.")
 
 # Pobiera od użytkownika ilość liczb do wygenerowania
 def get_size():
