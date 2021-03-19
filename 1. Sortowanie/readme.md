@@ -53,3 +53,7 @@ Plik wyjściowy będzie miał rozszerzenie `.in`. Ma to na celu uniknięcie przy
 innych ważnych plików.
 
 Format pliku wyjściowego odpowiada formatowi danych wejściowych oczekiwanemu przez `sort.py`.
+
+Możliwe jest wygenerowanie wielu ciągów z użyciem tego narzędzia. W tym celu należy podać liczbę
+ciągów do wygenerowania jako argument w wierszu polecenia. Takie wywołanie przybierze postać:
+`generate.py [ciągów]`. Paramtery opisujące ciąg można przekazywać z pliku za pomocą operatora `<`.
