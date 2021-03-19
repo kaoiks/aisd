@@ -1,5 +1,6 @@
 # Pomija cache Pythona
 __pycache__
 
-# Pomija pliki z danymi wejściowymi
+# Pomija pliki z danymi wejściowymi oraz wyjściowymi
 *.in
+*.out
