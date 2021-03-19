@@ -71,8 +71,13 @@ def sort(a, sort_func):
     print('  Sortowanie zajęło', time, 'ms')
 
     print('  Trwa sprawdzanie sortowania...')
-    print('  Wynik:', check_sort(result[0])[1])
+    check_result = check_sort(result[0])
+    print('  Wynik:', check_result[1])
     gc.collect()
+
+    # Błędne sortowanie można wyłapać po ujemnym czasie
+    if not check_result[0]:
+        return -1e9
     return time
 
 
