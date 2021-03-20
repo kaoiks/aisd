@@ -6,6 +6,7 @@ from check import check_sort
 from algos.heapsort import heapsort
 from algos.insertionsort import insertionsort
 from algos.mergesort import mergesort
+from algos.quicksort import quicksort, quicksort_middle, quicksort_right, quicksort_random
 from algos.selectionsort import selectionsort
 
 # Zwraca obsługiwane funkcje sortujące
@@ -14,6 +15,10 @@ def get_supported_functions():
         'heap': ('Heap sort', heapsort),
         'insert': ('Insertion sort', insertionsort),
         'merge': ('Merge sort', mergesort),
+        'quick': ('Quick sort – domyślny wybór klucza', quicksort),
+        'quick:middle': ('Quick sort – wybór klucza środkowego', quicksort),
+        'quick:right': ('Quick sort – wybór klucza prawego', quicksort),
+        'quick:random': ('Quick sort – wybór losowego klucza', quicksort),
         'select': ('Selection sort', selectionsort)
     }
 
