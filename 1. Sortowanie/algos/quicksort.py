@@ -44,26 +44,3 @@ def partition(arr, p, r, keygen):
             arr[j] = t
         else:
             return j
-
-# QUICKSORT-MAIN(A)
-# 1  QUICKSORT(A, 1, length[A])
-# 2 return A
-# QUICKSORT(A, p, r)
-# 1 if p < r
-# 2   then q = PARTITION(A, p, r)
-# 3        QUICKSORT(A, p, q)
-# 4        QUICKSORT(A, q + 1, r)
-# PARTITION(A, p, r)
-# 1  x = A[(p + r) / 2]
-# 2  i = p - 1
-# 3  j = r + 1
-# 4 while True
-# 5     do repeat
-# 6              j = j - 1
-# 7        until A[j] <= x
-# 8        repeat
-# 9              i = i + 1
-# 10        until A[i] >= x
-# 11 if i < j
-# 12         then zamień A[i] <-> A[j]
-# 13 else return j
