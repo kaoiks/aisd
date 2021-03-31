@@ -39,6 +39,11 @@ class LinkedList:
 
         return False
 
+    # Usuwa wszystkie elementy listy
+    def clear(self):
+        while self.firstElem != None:
+            self.remove_first()
+
     # Usuwa pierwszy element
     def remove_first(self):
         if self.firstElem == None:
