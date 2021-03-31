@@ -23,6 +23,10 @@ class BSTree:
         self.root.removeChildren()
         self.root = None
 
+    # Sprawdza, czy podana wartość istnieje w drzewie
+    def find(self, needle):
+        return self.root.find(needle)
+
 
 class TreeNode:
 
@@ -60,3 +64,13 @@ class TreeNode:
         print(self.value, end=' ')
         if self.right != None:
             self.right.print()
+
+    # Wyszukuje element o konkretnej wartości
+    def find(self, needle):
+        if self.value == needle:
+            return True
+
+        if needle < self.value:
+            return self.left.find(needle)
+        else:
+            return self.right.find(needle)
