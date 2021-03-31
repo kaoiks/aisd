@@ -44,21 +44,9 @@ class LinkedList:
         if self.firstElem == None:
             return
         self.firstElem = self.firstElem.nextElem
-    
-    def find(self, needle):
-        return self.firstElem.find(needle)
-
 
 class LinkedListElement:
 
     def __init__(self, content):
         self.content = content
         self.nextElem = None
-    
-    def find(self, needle):
-        if needle == self.content:
-            return True
-
-        if self.nextElem == None:
-            return False
-        return self.nextElem.find(needle)
