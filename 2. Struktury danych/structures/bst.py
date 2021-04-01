@@ -25,7 +25,21 @@ class BSTree:
 
     # Sprawdza, czy podana wartość istnieje w drzewie
     def find(self, needle):
+        if self.root == None:
+            return False
         return self.root.find(needle)
+
+    # Zwraca zawartość drzewa
+    def getElements(self):
+        if self.root == None:
+            return []
+        return self.root.getElements()
+    
+    # Zwraca głębokość drzewa
+    def getDepth(self):
+        if self.root == None:
+            return 0
+        return self.root.getDepth()
 
 
 class TreeNode:
@@ -74,3 +88,22 @@ class TreeNode:
             return self.left.find(needle)
         else:
             return self.right.find(needle)
+    
+    # Zwraca zawartość drzewa
+    def getElements(self):
+        elem = []
+        if self.left != None:
+            elem += self.left.getElements()
+        elem.append(self.value)
+        if self.right != None:
+            elem += self.right.getElements()
+        return elem
+
+    # Zwraca głębokość drzewa
+    def getDepth(self):
+        depth = 0
+        if self.left != None:
+            depth = max(depth, self.left.getDepth())
+        if self.right != None:
+            depth = max(depth, self.right.getDepth())
+        return depth + 1
