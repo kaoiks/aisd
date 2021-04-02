@@ -15,33 +15,33 @@ def main():
 
         list_wrapper = [None]
         t_createl = timeit.timeit(lambda: createList(numbers, list_wrapper), number=1)
-        t_createl = int(t_createl * 10e4) / 10
+        t_createl = int(t_createl * 1e4) / 10
         print("    Lista - tworzenie:", t_createl, "ms")
         sum_createl += t_createl
 
         t_findl = timeit.timeit(lambda: findAllInList(list_wrapper, numbers), number=1)
-        t_findl = int(t_findl * 10e4) / 10
+        t_findl = int(t_findl * 1e4) / 10
         print("    Lista - wyszukiwanie wszystkich:", t_findl, "ms")
         sum_findl += t_findl
 
         t_clearl = timeit.timeit(lambda: clearList(list_wrapper), number=1)
-        t_clearl = int(t_clearl * 10e4) / 10
+        t_clearl = int(t_clearl * 1e4) / 10
         print("    Lista - czyszczenie:", t_clearl, "ms")
         sum_clearl += t_clearl
 
         tree_wrapper = [None]
         t_createt = timeit.timeit(lambda: createTree(numbers, tree_wrapper), number=1)
-        t_createt = int(t_createt * 10e4) / 10
+        t_createt = int(t_createt * 1e4) / 10
         print("    Drzewo - tworzenie:", t_createt, "ms")
         sum_createt += t_createt
 
         t_findt = timeit.timeit(lambda: findAllInTree(tree_wrapper, numbers), number=1)
-        t_findt = int(t_findt * 10e4) / 10
+        t_findt = int(t_findt * 1e4) / 10
         print("    Drzewo - wyszukiwanie wszystkich:", t_findt, "ms")
         sum_findt += t_findt
 
         t_cleart = timeit.timeit(lambda: clearTree(tree_wrapper), number=1)
-        t_cleart = int(t_cleart * 10e4) / 10
+        t_cleart = int(t_cleart * 1e4) / 10
         print("    Drzewo - czyszczenie:", t_cleart, "ms")
         sum_cleart += t_cleart
 
