@@ -34,12 +34,24 @@ class BSTree:
         if self.root == None:
             return []
         return self.root.getElements()
-    
+
     # Zwraca głębokość drzewa
     def getDepth(self):
         if self.root == None:
             return 0
         return self.root.getDepth()
+
+    # Zwraca tablicę elementów w post-order
+    def postorder(self):
+        if self.root == None:
+            return []
+        return self.root.postorder()
+
+    # Zwraca głębokość na której znajuje się najmniejszy element
+    def getSmallestDepth(self):
+        if self.root == None:
+            return -1
+        return self.root.getSmallestDepth()
 
 
 class TreeNode:
@@ -101,9 +113,25 @@ class TreeNode:
 
     # Zwraca głębokość drzewa
     def getDepth(self):
-        depth = 0
+        depth = -1
         if self.left != None:
             depth = max(depth, self.left.getDepth())
         if self.right != None:
             depth = max(depth, self.right.getDepth())
         return depth + 1
+
+    # Zwraca drzewo w kolejności post-order
+    def postorder(self):
+        arr = []
+        if self.left != None:
+            arr += self.left.postorder()
+        if self.right != None:
+            arr += self.right.postorder()
+        arr += [self.value]
+        return arr
+
+    # Zwraca poziom najmniejszego elementu
+    def getSmallestDepth(self):
+        if self.left == None:
+            return 0
+        return self.left.getSmallestDepth() + 1
