@@ -2,7 +2,6 @@ class MatrixGraph:
 
     def __init__(self, vertices):
         self.adjacency = []
-        self.isVisited = [False] * len(vertices)
         for _ in range(len(vertices)):
             self.adjacency.append([False] * len(vertices))
 

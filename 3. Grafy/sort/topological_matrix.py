@@ -1,19 +1,20 @@
 def topologicalSortMatrix(graph):
     stack = []
+    visited = [False] * len(graph.adjacency)
     for i in range(len(graph.adjacency)):
-        topologicalSortStep(graph, i, stack)
+        topologicalSortStep(graph, i, stack, visited)
 
     stack.reverse()
     return stack
 
-def topologicalSortStep(graph, node_index, visited_stack):
-    if graph.isVisited[node_index]:
+def topologicalSortStep(graph, node_index, stack, visited):
+    if visited[node_index]:
         return
 
     successors = graph.getImmediateSuccessors(node_index)
 
     for succ in successors:
-        topologicalSortStep(graph, succ, visited_stack)
+        topologicalSortStep(graph, succ, stack, visited)
 
-    graph.isVisited[node_index] = True
-    visited_stack.append(node_index)
+    visited[node_index] = True
+    stack.append(node_index)
