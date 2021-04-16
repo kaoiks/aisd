@@ -21,7 +21,6 @@ class ListGraphNode:
     def __init__(self, val):
         self.successors = deque()
         self.id = val
-        self.isVisited = False
 
     def addSuccessor(self, succ):
         self.successors.append(succ)
