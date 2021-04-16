@@ -1,7 +1,7 @@
-def topologicalSortList(graph):
+def topologicalSort(graph):
     stack = []
-    visited = [False] * len(graph.vertices)
-    for i in range(len(graph.vertices)):
+    visited = [False] * graph.getVertexCount()
+    for i in range(graph.getVertexCount()):
         topologicalSortStep(graph, i, stack, visited)
 
     stack.reverse()
@@ -11,11 +11,10 @@ def topologicalSortStep(graph, node_index, stack, visited):
     if visited[node_index]:
         return
 
-    node = graph.getVertex(node_index)
-    successors = node.getImmediateSuccessors()
+    successors = graph.getImmediateSuccessors(node_index)
 
     for succ in successors:
-        topologicalSortStep(graph, succ.id, stack, visited)
+        topologicalSortStep(graph, succ, stack, visited)
 
     visited[node_index] = True
     stack.append(node_index)
