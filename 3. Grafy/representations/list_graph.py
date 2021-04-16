@@ -2,28 +2,16 @@ from collections import deque
 
 class ListGraph:
     def __init__(self, vertices):
-        self.vertices = [None] * len(vertices)
+        self.successors = [None] * len(vertices)
         for i in range(len(vertices)):
-            self.vertices[vertices[i].id] = ListGraphNode(vertices[i].id)
+            self.successors[vertices[i].id] = deque()
         
         for i in range(len(vertices)):
             for node in vertices[i].successors:
-                self.vertices[vertices[i].id].addSuccessor(node)
-    
-    def getVertex(self, num):
-        return self.vertices[num]
+                self.successors[vertices[i].id].append(node.id)
     
     def getVertexCount(self):
-        return len(self.vertices)
+        return len(self.successors)
 
-
-class ListGraphNode:
-    def __init__(self, val):
-        self.successors = deque()
-        self.id = val
-
-    def addSuccessor(self, succ):
-        self.successors.append(succ)
-    
-    def getImmediateSuccessors(self):
-        return self.successors
+    def getImmediateSuccessors(self, index):
+        return self.successors[index]
