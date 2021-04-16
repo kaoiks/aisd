@@ -1,5 +1,5 @@
 from random import random
-from graph_node import GraphNode
+from generator.graph_node import GraphNode
 
 # Generuje acykliczny graf skierowany o nodes_count wierzchołkach
 # Nasycenie krawędziami będzie wynosiło w przybliżeniu saturation
