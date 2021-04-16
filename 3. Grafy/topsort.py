@@ -3,8 +3,7 @@ import timeit
 from generator.dag_generator import generateDag
 from representations.list_graph import ListGraph
 from representations.matrix_graph import MatrixGraph
-from sort.topological_list import topologicalSortList
-from sort.topological_matrix import topologicalSortMatrix
+from algos.topological_sort import topologicalSort
 
 def main():
     if len(sys.argv) <= 2:
@@ -36,14 +35,14 @@ def measureTime(src_graph):
     time = 0
     for i in range(repetitions):
         print("Rozpoczęto przebieg #", i+1, sep="")
-        time += timeit.timeit(lambda: topologicalSortList(list_graph), number=1)
+        time += timeit.timeit(lambda: topologicalSort(list_graph), number=1)
     avg_time_list = int(1e4 * time / repetitions) / 10
     
     print("Pomiar czasu dla reprezentacji macierzowej...")
     time = 0
     for i in range(repetitions):
         print("Rozpoczęto przebieg #", i+1, sep="")
-        time += timeit.timeit(lambda: topologicalSortMatrix(matrix_graph), number=1)
+        time += timeit.timeit(lambda: topologicalSort(matrix_graph), number=1)
     avg_time_matrix = int(1e4 * time / repetitions) / 10
 
     return (avg_time_list, avg_time_matrix)
