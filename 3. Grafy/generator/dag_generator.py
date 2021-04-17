@@ -1,4 +1,4 @@
-from random import random
+from random import random, randint
 from generator.graph_node import GraphNode
 
 # Generuje acykliczny graf skierowany o nodes_count wierzchołkach
@@ -32,7 +32,7 @@ def connectVertices(graph: list, probability: float) -> None:
         for j in range(i + 1, len(graph)):
             if probability <= random():
                 continue
-            graph[i].addSuccessor(graph[j])
+            graph[i].addSuccessor(graph[j], randint(1, 1000))
 
 # Łączy podgrafy, by stworzyć graf spójny
 def connectSubgraphs(graph: list) -> None:
@@ -41,7 +41,7 @@ def connectSubgraphs(graph: list) -> None:
         if node.isAttached:
             continue
         if i > 0:
-            graph[i-1].addSuccessor(node)
+            graph[i-1].addSuccessor(node, randint(1, 1000))
         markAsAttached(node)
 
 # Oznacza podgraf jako dołączony do grafu wynikowego
