@@ -7,8 +7,8 @@ class ListGraph:
             self.successors[vertices[i].id] = deque()
         
         for i in range(len(vertices)):
-            for node in vertices[i].successors:
-                self.successors[vertices[i].id].append(node.id)
+            for node, weight in vertices[i].successors:
+                self.successors[vertices[i].id].append((node.id, weight))
     
     def getVertexCount(self):
         return len(self.successors)

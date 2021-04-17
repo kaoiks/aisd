@@ -13,7 +13,7 @@ def topologicalSortStep(graph, node_index, stack, visited):
 
     successors = graph.getImmediateSuccessors(node_index)
 
-    for succ in successors:
+    for succ, _weight in successors:
         topologicalSortStep(graph, succ, stack, visited)
 
     visited[node_index] = True

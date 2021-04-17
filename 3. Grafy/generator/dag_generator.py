@@ -54,7 +54,7 @@ def markAsAttached(node: GraphNode) -> None:
             continue
 
         node.isAttached = True
-        for child in node.successors:
+        for child, _weight in node.successors:
             nodes_to_mark.append(child)
 
 # Miesza kolejność występowania wierzchołków w tablicy, 
