@@ -8,7 +8,7 @@ def prim(graph):
             if i < succ:
                 edges.append((i, succ, weight))
 
-    edges = deque(sorted(edges, key=lambda x: x[2]))
+    edges = sorted(edges, key=lambda x: x[2])
     visited = BSTree()
     out_edges = deque()
     to_visit = graph.getVertexCount() - 1
