@@ -1,7 +1,8 @@
-from random import random, randint
+from random import random
+from generator.pseudorandom import psrandomOneToThousand
 from generator.graph_node import GraphNode
 
-# Generuje graf skierowany o nodes_count wierzchołkach
+# Generuje graf nieskierowany o nodes_count wierzchołkach
 # Nasycenie krawędziami będzie wynosiło w przybliżeniu saturation
 # Parametr saturation musi być z przedziału [0, 1].
 def generateUg(nodes_count: int, saturation: float) -> list:
@@ -32,7 +33,7 @@ def connectVertices(graph: list, probability: float) -> None:
         for j in range(i + 1, len(graph)):
             if probability <= random():
                 continue
-            weight = randint(1, 1000)
+            weight = psrandomOneToThousand()
             graph[i].addSuccessor(graph[j], weight)
             graph[j].addSuccessor(graph[i], weight)
 
@@ -43,7 +44,7 @@ def connectSubgraphs(graph: list) -> None:
         if node.isAttached:
             continue
         if i > 0:
-            weight = randint(1, 1000)
+            weight = psrandomOneToThousand()
             graph[i-1].addSuccessor(node, weight)
             node.addSuccessor(graph[i-1], weight)
         markAsAttached(node)
