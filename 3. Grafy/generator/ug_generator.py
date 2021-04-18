@@ -12,7 +12,6 @@ def generateUg(nodes_count: int, saturation: float) -> list:
     graph = createEmptyGraph(nodes_count)
     connectVertices(graph, saturation)
     connectSubgraphs(graph)
-    shuffleNodes(graph)
     return graph
 
 # Tworzy graf bez łuków
@@ -61,16 +60,3 @@ def markAsAttached(node: GraphNode) -> None:
         node.isAttached = True
         for child, _weight in node.successors:
             nodes_to_mark.append(child)
-
-# Miesza kolejność występowania wierzchołków w tablicy
-def shuffleNodes(graph: list) -> None:
-    for i in range(len(graph)):
-        for j in range(i + 1, len(graph)):
-            if random() > 0.5:
-                continue
-            t = graph[i]
-            graph[i] = graph[j]
-            graph[j] = t
-
-    for i in range(len(graph)):
-        graph[i].id = i
