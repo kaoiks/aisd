@@ -1,20 +1,29 @@
 import sys
 import timeit
 from generator.ug_generator import generateUg
+from generator.reader import readGraph
 from representations.list_graph import ListGraph
 from representations.matrix_graph import MatrixGraph
 from algos.prim import prim
 
 def main():
-    if len(sys.argv) <= 2:
+    if len(sys.argv) == 2:
         print("Nie podano wymaganych argumentów. Sposób wywołania:")
         print("prim.py <nasycenie w %> <ilość wierzchołków>")
         exit(1)
-    saturation = float(sys.argv[1]) / 100
-    size = int(sys.argv[2])
+    
+    if len(sys.argv) <= 1:
+        print("Wczytywanie grafu ze standardowego wejścia...")
+        graph = readGraph()
+        size = len(graph)
+        saturation = 0
+    else:
+        saturation = float(sys.argv[1]) / 100
+        size = int(sys.argv[2])
 
-    print("Generowanie grafu...")
-    graph = generateUg(size, saturation)
+        print("Generowanie grafu...")
+        graph = generateUg(size, saturation)
+
     times = measureTime(graph)
 
     print()
