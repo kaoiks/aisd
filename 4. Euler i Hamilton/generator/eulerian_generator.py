@@ -1,4 +1,4 @@
-from random import randint, random
+from random import randint, random, shuffle
 
 # Tworzy graf eulerowski o podanym rozmiarze i nasyceniu
 def generateEulerianGraph(size: int, saturation: float) -> list:
@@ -16,9 +16,11 @@ def createEmptyGraph(size: int) -> list:
 
 # Łączy wszystkie wierzchołki w pętlę, by zagwarantować spójność
 def makeGraphLoop(graph: list):
+    loop = list(range(len(graph)))
+    shuffle(loop)
     for i in range(len(graph) - 1):
-        graph[i][i+1] = graph[i+1][i] = True
-    graph[0][-1] = graph[-1][0] = True
+        graph[loop[i]][loop[i+1]] = graph[loop[i+1]][loop[i]] = True
+    graph[loop[0]][loop[-1]] = graph[loop[-1]][loop[0]] = True
 
 # Wypełnia graf krawędziami, tak by uzyskać odpowiednie nasycenie
 def fillGraph(graph: list, target_saturation: float):
