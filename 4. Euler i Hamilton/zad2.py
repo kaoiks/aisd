@@ -21,9 +21,7 @@ def main():
 
     size = int(sys.argv[2])
 
-    graph = generateEulerianGraph(size, saturation)
-
-    hamilton_time = measureTime(graph)
+    hamilton_time = measureTime(size, saturation)
 
     print()
     print("      Elementów | ", str(size).rjust(10, " "), sep="")
@@ -33,12 +31,13 @@ def main():
     print(" Cykl Hamiltona | ", str(hamilton_time).rjust(10, " "), sep="")
     print()
 
-def measureTime(graph):
+def measureTime(size, saturation):
     repetitions = 5
 
     print("Wyznaczanie cyklu Hamiltona...")
     hamilton_time = 0
     for i in range(repetitions):
+        graph = generateEulerianGraph(size, saturation)
         print("Przebieg #", i+1, ": ...", sep="")
         time = timeit(lambda: hamilton(graph, True), number=1)
         print("\033[1APrzebieg #", i+1, ": ", int(time * 1e3), " ms", sep="")
