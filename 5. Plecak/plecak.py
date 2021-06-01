@@ -1,12 +1,6 @@
-import math
-from os import stat
-import sys
-import operator
 from generator import generate
 from algos.greedy import greedy
 from algos.dynamic import dynamic
-
-
 
 
 
